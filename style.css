@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('./fonts/icons/style.css');
+
+
+:root {
+    --color_bg: #e0e5eb;
+    --gradient: linear-gradient(to right, #87CEFA, #1E90FF);
+    --grey: #f0f0f0;
+    --transition: all 0.3s ease-in-out;
+
+}
+/*#a894e6, #7e77ee  all 0.3s ease-in-out*/
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Rubik", sans-serif;
+    background-color: var(--color_bg);
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.mobile {
+    width: 350px;
+    height: 700px;
+    background-color: white ;
+    border-radius: 20px;
+    box-shadow: -5px 5px 10px rgba(0,0,0,3);
+    display: grid;
+    grid-template-rows: 48px 1fr 62px;
+}
+
+.mobile__top, 
+.mobile__bottom {
+    align-self: center;
+    justify-self: center;
+   
+}
+
+.mobile__content {
+    background-color:white;
+}
+
+.rooms {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 20px;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 14px;
+   
+}
+.room {
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: 130px 36px;
+    align-content: center;
+    font-size: 16px;
+    text-align: center;
+    background-color: var(--grey);
+    border-radius: 12px;
+
+}
+
+
+.room.selected{
+    background: var(--gradient);
+    color: white;
+}
+
+.room.selected i {
+    opacity: 1;
+}
+
+.room i {
+    font-size: 5em;
+    align-self: center;
+    opacity: 0.7;
+}
+
+
+/* UI Components */
+
+.selectbox {
+    cursor: pointer;
+    width: 143px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 25px;
+
+}
+.selectbox__selected {
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: white;
+}
+.selectbox.open .ic_arrow{
+    transform: rotate(180deg);
+
+}
+
+.ic_arrow {
+    display: inline-block;
+    transform: rotate(0deg);
+    transition: var(--transition);
+    font-size: 0.7em;
+    margin-left: 10px;
+}
+
+.selectbox.open .selectbox__list{
+    top: 120%;
+    max-height: 200px;
+}
+.selectbox__list {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: -8px;
+    right: -8px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 8px 12px;
+    border-radius: 3px;
+    background-color: white;
+    transition: var(--transition);
+
+}
+.selectbox__items {
+    cursor: pointer;
+
+}
+.selectbox__items.selected,
+.selectbox__items:hover{
+    color: #1E90FF;
+    font-weight: 600;
+}
+
+.selectbox__items:not(:last-child){
+    margin-bottom: 4px;
+
+}
+
+/* страница настроек */
+.settings{
+    display: none;
+   /* display: block; */
+    padding: 0 20px;
+}
+
+.settings__tabs{
+    display: grid;
+    grid-gap: 14px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 110px;
+}
+
+.tab {
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    align-content: center;
+    font-size: 16px;
+    text-align: center;
+    background-color: var(--grey);
+    border-radius: 12px;
+
+}
+
+.tab.selected{
+    background: var(--gradient);
+    color: white;
+}
+
+.tab.selected i {
+    opacity: 1;
+}
+
+.tab i {
+    align-self: center;
+    font-size: 3em;
+    opacity: 0.7;
+}
+/* экраны настроек */
+
+.settings__screen{
+    display: none;
+}
+
+.settings__screen.selected{
+    display: block;
+}
+.settings__screen-title{
+    margin: 30px 0 15px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.settings__screen-icon{
+    text-align: center;
+    font-size: 30px;
+    color: grey;
+    margin-bottom: 15px;
+
+}
+/* конопка регулеровки температуры*/
+.temperature-button {
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    position: relative;
+    width: 240px;
+    height: 240px; 
+    margin: 0 auto;
+}
+
+.temperature-button__info{
+    position: relative;
+    font-size: 32px;
+    width: 70%;
+    height: 70%;
+    border-radius: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 70%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.temperature-button__info::before{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: 4%;
+    bottom: 4%;
+    border-radius: 100%;
+    opacity: 0.3;
+    border: 1px solid black;
+}
+
+.dots-box {
+    transform: rotate(5deg);
+    transform-origin: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+}
+
+.separete-dots,
+.separete-line,
+.round,
+.line-active,
+.line,
+.dots {
+    fill: transparent;
+    stroke: var(--grey);
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-dasharray: 0 21;
+    transition: all 0.5s ease-in-out;
+
+
+}
+
+.round,
+.line-active,
+.line{
+    
+    stroke-width: 1px;
+    stroke-dasharray: 276 276;
+    transform: rotate(48deg);
+    transform-origin: center;
+}
+
+.line-active{
+    transition: all 0,5s ease-in-out;
+    stroke: black;
+    stroke-dasharray: 54 276; /* от 54 до 276 */
+}
+
+.round{
+    stroke-width: 6px;
+    stroke-dasharray: 0 276;
+    transform: rotate(-240deg); /* от -240 до 48 */
+}
+
+.separete-dots,
+.separete-line{
+    stroke: white;
+    transform: rotate(60deg);
+    transform-origin: center;
+
+}
+
+.separete-dots{
+    stroke-dasharray: 40 313; 
+}
+.separete-line{
+    transform: rotate(49deg);
+    stroke-dasharray: 53 276;
+}
+
+/* power */
+
+.power{
+    cursor: pointer;
+    background: var(--gradient);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 44px;
+    font-size: 24px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding-bottom: 2px;
+    margin: 0 auto;
+}
+
+.power.off{
+    background: var(--grey);
+}
+
+.power-label{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.save-button{
+    cursor: pointer;
+    background: var(--gradient);
+    color: white;
+    width: 250px;
+    margin: 15px auto 0;
+    border-radius: 100px;
+    font-size: 15px;
+    text-align: center;
+    padding: 16px;
+}
+
+/* slider */
+
+.slider{
+    cursor: pointer;
+    width: 100px;
+    height: 250px;
+    margin: 0 auto;
+    background-color: var(--grey);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+.slider__progress{
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    min-height: 30px;
+    height: 45%;
+   
+
+}
+.slider__progress span {
+    pointer-events: none;
+}
+
+/* switch */
+.switch{
+    cursor: pointer;
+    width: 60px;
+    height: 28px;
+    background: var(--grey);
+    margin: 30px auto 0;
+    border-radius: 50px;
+    position: relative;
+}
+
+.switch.off div{
+    left: 0%;
+    background: #bbb;
+}
+.switch div{
+    width: 28px;
+    height: 28px;
+    border-radius: 60px;
+    background: var(--gradient);
+    position: absolute;
+    top: 0;
+    left: 52%;
+    transition: var(--transition);
+    
+}
